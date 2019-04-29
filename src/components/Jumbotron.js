@@ -1,13 +1,12 @@
 import React from 'react';
-import Container from './Container';
 
-const Jumbotron = () => {
+
+const Jumbotron = (props) => {
     return (
         <div className="jumbotron jumbotron-fluid">
-        <Container>
-        <h1 className="display-4">Fluid jumbotron</h1>
-          <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-        </Container>
+          <div className="status">
+            <h3>{(props.mistakeMade === false) ? ("Guess Another") : ("That was guessed already! Try Again!")}</h3>
+          </div> 
       </div> 
     );
 }

@@ -1,28 +1,15 @@
 import React from 'react';
-import Counter from './Counter';
+
 
 
 const NavBar = (props) => {
     return (
-        <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light">
-            <a className="navbar-brand" href="/">Navbar</a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="score-area"><Counter {...props}/></div>
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                    <li className="nav-item active">
-                        <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="/">Features</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="/">Pricing</a>
-                    </li>
-                </ul>
+        <nav className="navbar navbar-expand-xl sticky-top navbar-light bg-dark">
+            <div className="score-area">Score: {props.score}</div>
+            <div className="logo" >
+                <img src="./images/b7c243ffdd6bd65c0fe0f6fde12848d1.png" style={{height:50, width: 700}}alt="logo" />
             </div>
+            <div className="high-score-area">High Score: {props.highScore}</div>
         </nav>
     );
 }
