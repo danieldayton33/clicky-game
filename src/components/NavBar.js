@@ -11,7 +11,7 @@ const NavBar = (props) => {
             </div>
             <div className="high-score-area">High Score: {props.highScore}</div>
             <div className="status">
-            {(props.mistakeMade === false) ? ("Guess Another") : ("That was guessed already! Try Again!")}
+             {(props.mistakeMade === false) ? ("Guess. No Matches!") : ("Wrong! Try Again!")}
             </div> 
         </nav>
     );
