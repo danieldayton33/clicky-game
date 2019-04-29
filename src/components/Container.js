@@ -1,10 +1,7 @@
-import React from 'react';
+import React from "react";
 
-const Container = () => {
-    return (
-        <div className="container">
-         </div>
-    );
+function Container(props) {
+  return <div className={`container${props.fluid ? "-fluid" : ""}`} {...props} />;
 }
 
 export default Container;

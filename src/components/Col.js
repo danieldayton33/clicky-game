@@ -1,11 +1,9 @@
-import React from 'react';
+import React from "react";
 
-const Col = (props) => {
-    return (
-        <div className={`col-md-${props.width}`}>
+function Col(props) {
+  const size = props.size.split(" ").map(size => "col-" + size).join(" ");
 
-        </div>
-    )
+  return <div className={size} {...props} />;
 }
 
 export default Col;
