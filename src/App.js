@@ -13,108 +13,140 @@ class App extends Component {
     pictures: [
         {
             src: './images/bear.jpg',
-            isClicked: 'false',
+            isClicked: false,
             id: 'bear'
         },
         {
           src: './images/brienne.jpeg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'brienne'
         },
         {
           src: './images/hound.jpeg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'hound'
         },
         {
           src: './images/jaime.jpg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'jaime'
         },
         {
           src: './images/johnsnow.jpg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'john'
         },
         {
           src: './images/knightking.jpg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'night'
         },
         {
           src: './images/mysande.jpg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'mysande'
         },
         {
           src: './images/ned.jpg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'ned'
         },
         {
           src: './images/olenna.jpg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'olenna'
         },
         {
           src: './images/sansa.jpg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'sansa'
         },
         {
           src: './images/themountain.jpeg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'mountain'
         },
         {
           src: './images/Throne-Game-Dragon-200x200.jpg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'danny'
         },
         {
           src: './images/tyrion.jpeg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'tyrion'
         },
         {
           src: './images/varyes.jpg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'varyes'
         },
         {
           src: './images/catelyn.jpeg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'catelyn'
         },
         {
           src: './images/sam.jpeg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'sam'
         },
         {
           src: './images/petyr.jpeg',
-          isClicked: 'false',
+          isClicked: false,
           id: 'petyr'
         },
-        {
-          src: './images/Throne-Game-Dragon-200x200.jpg',
-          isClicked: 'false',
-          id: 'olenna'
-        }
-        
-    
     ],
     score: 0,
     highScore: 0
 }
-  handleClick = () => {
-    console.log("clicked")
+  componentDidMount () {
+    this.shufflePictures();
+  }
+  handleClick = (index) => {
+    console.log("clicked", index);
+    if(this.state.pictures[index].isClicked === false) {
+      const newPictures = this.state.pictures.map(picture => {
+        return picture;
+      });
+      newPictures[index].isClicked = true;
+      this.setState(prevState => ({
+        pictures: newPictures,
+        score: prevState.score += 1
+      }));
+      this.shufflePictures();
+    } else {
+      if(this.state.score > this.state.highScore) {
+        this.setState({
+          score: 0,
+          highScore: this.state.score
+        })
+        
+      }
+      alert("Already Clicked");
+      this.setState({score: 0});
+      this.shufflePictures();
+    }
+   
+    
+  }
+  shufflePictures = () => {
+    // let shuffled = [];
+    const newPictures = this.state.pictures.map(picture => {
+      return picture;
+    })
+    newPictures.sort(()=> Math.random() - 0.5)
+    console.log("Finshed Shuffle",newPictures)
+    this.setState({
+      pictures: newPictures
+    })
   }
   render(){
     console.log(this.state.pictures);
+    console.log(this.state.score)
     return (
     <div>
-      <NavBar />
+      <NavBar score={this.state.score} highScore={this.state.highScore}/>
       <Jumbotron />
       <Container>
         <Row>
@@ -122,6 +154,7 @@ class App extends Component {
             {this.state.pictures.map((picture, index) => {
               return (
                <Card 
+               key={index}
                index={index} 
                src={picture.src}
                id={picture.id}
