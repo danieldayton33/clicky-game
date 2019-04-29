@@ -10,6 +10,9 @@ const NavBar = (props) => {
                 <img src="./images/b7c243ffdd6bd65c0fe0f6fde12848d1.png" style={{height:50, width: 700}}alt="logo" />
             </div>
             <div className="high-score-area">High Score: {props.highScore}</div>
+            <div className="status">
+            {(props.mistakeMade === false) ? ("Guess Another") : ("That was guessed already! Try Again!")}
+            </div> 
         </nav>
     );
 }

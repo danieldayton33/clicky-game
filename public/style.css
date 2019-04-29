@@ -17,6 +17,7 @@ body {
     border-radius: 50%;
     box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3); 
 }
+
 .image-div:hover {
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
@@ -28,6 +29,11 @@ body {
   float: left;
   font-size: 30px;
   color: whitesmoke;
+}
+.status {
+  font-size: 20px;
+  color: whitesmoke;
+  margin: 20px;
 }
 .high-score-area {
   position: relative;
