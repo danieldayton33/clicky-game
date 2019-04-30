@@ -46,6 +46,7 @@ body {
 .shake {
     animation: shake 0.5s;
     animation-iteration-count: 1;
+    color: red;
   }
   .modal-content {
     width: 500px;
