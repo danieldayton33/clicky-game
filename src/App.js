@@ -5,6 +5,8 @@ import Container from './components/Container';
 import Row from './components/Row';
 import Col from './components/Col';
 import Card from './components/Card';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 
 class App extends Component {
@@ -93,7 +95,8 @@ class App extends Component {
   ],
     score: 0,
     highScore: 0,
-    mistakeMade: false
+    mistakeMade: false,
+    show: true
 }
    componentDidMount () {
     this.shufflePictures();
@@ -136,6 +139,15 @@ class App extends Component {
       pictures: newPictures
     });
   }
+  handleClose = () =>  {
+    this.setState({ 
+      show: false 
+    });
+  }
+
+  handleShow = () => {
+    this.setState({ show: true });
+  }
   render(){
     console.log(this.state.pictures);
     console.log(this.state.score)
@@ -163,7 +175,35 @@ class App extends Component {
             })}
           </Col> 
         </Row>
+        <Row>
+          <Col size={"md-12"}>
+            <Button variant="primary" onClick={this.handleShow}>
+            View Instructions
+          </Button>
+          </Col>
+        </Row>
       </Container>
+      <Modal 
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      show={this.state.show} onHide={this.handleClose}
+      >
+          <Modal.Header closeButton>
+            <Modal.Title>Welcome to GOT Match</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+          <Container fluid={true}>
+          <img src="https://media.giphy.com/media/1S9ci1Gu84b96/giphy.gif" alt="got-gif" style={{maxHeight: "100%", maxWidth: "100%"}}/>
+          To win, click each character without any repeats! Winter is coming...
+          </Container>
+         </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleClose}>
+              Dismiss
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     )}
 
